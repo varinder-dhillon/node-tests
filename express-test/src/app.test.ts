@@ -16,4 +16,4 @@ describe("Post /sum", () => {
         expect(res.statusCode).toBe(200);
         expect(res.body.answer).toBe(3);
     })
-})
+}) 
