@@ -16,10 +16,22 @@ describe("Post /sum", () => {
             b: 2,
             result: 3
         })
+        
+        // Vi Spy
+        vi.spyOn(prismaClient.sum, "create");
+
         const res = await request(app).post("/sum").send({
             a: 1,
             b: 2
         });
+
+        expect(prismaClient.sum.create).toHaveBeenCalledWith({
+            data: {
+                a: 1,
+                b: 2,
+                result: 3
+            }
+        })
 
         // const wait = await new Promise((resolve, rej)=>{
         //     setTimeout(()=> resolve(true), 2000)
