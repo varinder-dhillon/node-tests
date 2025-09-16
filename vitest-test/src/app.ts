@@ -12,6 +12,8 @@ const sumInput = z.object({
 
 app.use(express.json());
 
+
+
 app.post("/sum", async (req, res) => {
     // const { a, b } = req.body;
     const parsedSumObj = sumInput.safeParse(req.body);
@@ -23,7 +25,7 @@ app.post("/sum", async (req, res) => {
     }
 
     const answer = parsedSumObj.data.a + parsedSumObj.data.b;
-
+    
     await prismaClient.sum.create({
         data: {
             a: parsedSumObj.data.a,
