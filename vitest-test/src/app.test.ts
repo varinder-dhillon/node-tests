@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import  request  from "supertest";
 import app from "./app";
-// import { prismaClient } from "./__mocks__/db";
+import { prismaClient } from "./__mocks__/db";
 // import { prismaClient } from "./db";
 
 
@@ -10,6 +10,12 @@ vi.mock("./db")
 
 describe("Post /sum", () => {
     it("Should return the sum of two numbers", async () => {
+        prismaClient.sum.create.mockResolvedValue({
+            id: 1,
+            a: 1,
+            b: 2,
+            result: 3
+        })
         const res = await request(app).post("/sum").send({
             a: 1,
             b: 2
